@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DokterController;
 use App\Http\Controllers\PasienController;
 use Illuminate\Support\Facades\Route;
 
@@ -26,3 +27,10 @@ Route::get('/pasien/create', [PasienController::class, 'create']);
 
 //route untuk memproses form tambah pasien
 Route::post('/pasien', [PasienController::class, 'store']);
+
+//Dokter
+Route::get('/dokter', [DokterController::class, 'index']);
+
+Route::get('/dokter/create', [DokterController::class, 'create']);
+
+Route::post('/dokter', [DokterController::class, 'store']);
