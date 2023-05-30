@@ -9,7 +9,7 @@ class DokterController extends Controller
 {
     public function index()
     {
-        $dokters = Dokter::getAll();
+        $dokters = Dokter::all();
 
         return view('admin.dokter.index', [
             'dokters' =>
@@ -24,7 +24,14 @@ class DokterController extends Controller
 
     public function store(Request $request)
    {
-    dd($request->all());
+        Dokter::create([
+            'nama' => $request->nama,
+            'spesialis' => $request->spesialis,
+            'alamat' => $request->alamat,
+            'no_telp' => $request->no_telp
+        ]);
+
+        return redirect('/dokter');
    }
 
 }
