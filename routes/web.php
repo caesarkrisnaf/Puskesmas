@@ -25,6 +25,12 @@ Route::get('/pasien', [PasienController::class, 'index']);
 //route untuk menampilkan tambah pasiens
 Route::get('/pasien/create', [PasienController::class, 'create']);
 
+//route untuk menampilkan form edit pasien
+Route::get('/pasien/edit/{id}', [PasienController::class, 'edit']);
+Route::put('/pasien/{id}', [PasienController::class, 'update']);
+//route untuk hapus
+Route::delete('/pasien', [PasienController::class,'destroy']);
+
 //route untuk memproses form tambah pasien
 Route::post('/pasien', [PasienController::class, 'store']);
 
