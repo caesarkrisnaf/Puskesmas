@@ -24,6 +24,14 @@ class DokterController extends Controller
 
     public function store(Request $request)
    {
+
+    $request->validate([
+        'nama' => 'required | min:3',
+        'spesialis' => 'required',
+        'alamat' => 'required | max:500',
+        'no_telp' => 'required | numeric | digits_between:10,14',
+
+    ]);
         Dokter::create([
             'nama' => $request->nama,
             'spesialis' => $request->spesialis,
@@ -34,4 +42,34 @@ class DokterController extends Controller
         return redirect('/dokter');
    }
 
+   public function edit($id)
+   {
+       $dokter = Dokter::find($id);
+       return view('admin.dokter.edit',[
+        'dokter' => $dokter
+       ]); 
+   }
+
+   public function update($id, Request $request)
+   {
+        
+     $validateData = $request->validate([
+        'nama' => 'required | min:3',
+        'spesialis' => 'required',
+        'alamat' => 'required | max:500',
+        'no_telp' => 'required | numeric | digits_between:10,14',
+    ]);
+    
+    $dokter = Dokter::find($id);
+    $dokter->update($validateData);
+
+    return redirect('/dokter')->with('success', 'Data Berhasil Diubah');
+
+   }
+
+   public function destroy(Request $request)
+   {
+        Dokter::destroy($request->id);
+        return redirect('/dokter')->with('success','Data Berhasil Dihapus');
+   }
 }
