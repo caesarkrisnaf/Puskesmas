@@ -47,7 +47,14 @@
                         <label for="telp">No. Telp</label>
                         <input type="text" class="form-control" name="telp" placeholder="Masukkan No. Telp" value="">
                     </div>
-
+                    <div class="form-group mt-3">
+                        <label for="jk">Nama Dokter</label>
+                        <select class="form-control" name="dokter_id">
+                            @foreach ($dokters as $nd)
+                            <option value="{{ $nd->id }}">{{ $nd->nama}}</option>
+                            @endforeach
+                        </select>
+                    </div>
                     <div class="form-group mt-3 d-flex justify-content-center">
                         <button type="submit" class="btn btn-primary">Simpan</button>
                     </div>

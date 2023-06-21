@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Dokter;
+use App\Models\Pasien;
 use Illuminate\Http\Request;
 
 class DokterController extends Controller
@@ -30,6 +31,7 @@ class DokterController extends Controller
         'spesialis' => 'required',
         'alamat' => 'required | max:500',
         'no_telp' => 'required | numeric | digits_between:10,14',
+        
 
     ]);
         Dokter::create([
@@ -71,5 +73,15 @@ class DokterController extends Controller
    {
         Dokter::destroy($request->id);
         return redirect('/dokter')->with('success','Data Berhasil Dihapus');
+   }
+
+   public function show($id, Request $request)
+   {
+    $dokters = Dokter::find($id);
+    $pasien = Pasien::where('dokter_id', '=' , $id)->get();
+
+    return view('admin.dokter.detail', [
+        'dokters' =>  $dokters, 'pasien' => $pasien
+    ]);
    }
 }

@@ -42,6 +42,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::put('/dokter/{id}', [DokterController::class, 'update']);
     Route::post('/dokter', [DokterController::class, 'store']);
     Route::delete('/dokter', [DokterController::class, 'destroy']);
+    Route::get('/dokter/detail/{id}',[DokterController::class, 'show']);
 });
 
 Auth::routes();

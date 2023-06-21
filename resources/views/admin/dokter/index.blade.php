@@ -20,19 +20,25 @@
                     <th>Spesialis</th>
                     <th>Alamat</th>
                     <th>No. Telp</th>
+                    <th>Jumlah Pasien</th>
                     <th>Aksi</th>
                 </tr>
             </thead>
             <tbody>
                 @php $iteration = 1 @endphp
                   @foreach ($dokters as $item) 
+                
                     <tr>
                         <td>{{ $iteration++ }}</td>
                         <td>{{ $item['nama'] }}</td>
                         <td>{{ $item['spesialis'] }}</td>
                         <td>{{ $item['alamat'] }}</td>
                         <td>{{ $item['no_telp'] }}</td>
+                        <td>{{$item->Pasien->count()}}</td>
+                        
+
                         <td>
+                            <a href="/dokter/detail/{{$item->id}}" class="btn btn-sucess btn-sm">Detail</a>
                             <a href="/dokter/edit/{{$item->id}}" class="btn btn-warning btn-sm">Edit</a>
                             <form action="/dokter" method="POST" class="d-inline">
                                 @csrf
